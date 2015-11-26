@@ -16,7 +16,7 @@ post '/gateway' do
   end
 end
 
-def respond_message message
+def respond_message(message)
   content_type :json
-  {:text => message}.to_json
+  {"text": message}.to_json
 end
