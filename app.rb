@@ -10,13 +10,13 @@ post '/gateway' do
 
   case action
     when 'issues'
-      resp = HTTParty.get(repo_url)
+      repo = HTTParty.get(repo_url)
       resp = JSON.parse resp.body
-      respond_message "There are #{resp} open issues on #{repo}"
+      respond_message "There are #{resp['open_issues_count']} open issues on #{repo}"
   end
 end
 
-def respond_message(message)
+def respond_message message
   content_type :json
-  {"text": message}.to_json
+  {:text => message}.to_json
 end
